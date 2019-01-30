@@ -1,8 +1,8 @@
-<% if action == :edit %>
-    <% action_url = cat_url(cat) %>
-<% else %>
-    <% action_url = cats_url %>
-<% end %>
+<% if cat.persisted?  
+    action_url = cat_url(cat) 
+else 
+    action_url = cats_url 
+end %>
 
 <form action="<%=action_url%>" method="post">
 
