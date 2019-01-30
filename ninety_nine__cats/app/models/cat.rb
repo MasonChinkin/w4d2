@@ -19,6 +19,12 @@ class Cat < ApplicationRecord
         message: "sex must be M or F" }
 
     validates :name, :birth_date, :color, :sex, :description, presence: true
+
+    has_many :cat_rental_requests, 
+        primary_key: :id,
+        foreign_key: :cat_id,
+        class_name: :CatRentalRequest,
+        dependent: :destroy
     
 
     def age

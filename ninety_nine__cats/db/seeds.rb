@@ -8,8 +8,9 @@
 require 'byebug'
 
 Cat.destroy_all
+CatRentalRequest.destroy_all
 
-5.times do |i|
+1.upto(5) do |i|
     color = ['red','brown','black'].sample
     sex = ['M','F'].sample 
     
@@ -18,4 +19,11 @@ Cat.destroy_all
         color: color,
         sex: sex, 
         description: "description#{i}")
+
+    r = CatRentalRequest.create!(cat_id: c.id,
+    start_date: i.month.ago,
+    end_date: i.month.from_now)
 end
+
+Cat.first.cat_rental_requests.create!(start_date: 1.month.ago,
+    end_date: 1.month.from_now)
